@@ -1,6 +1,7 @@
 package es.unican.is2.ImpuestoCirculacionCommon;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 @SuppressWarnings("serial")
 public class Furgoneta
     extends Turismo implements Serializable
@@ -8,6 +9,10 @@ public class Furgoneta
     
     private double potencia;
     private boolean comercial;
+    
+    public Furgoneta(String string, LocalDate localDate, int i) {
+    	super(string, localDate, i);
+    }
     
    /**
     * Retorna el valor del atributo comercial
@@ -28,9 +33,24 @@ public class Furgoneta
     
   
 	@Override
-    public double precioImpuesto() {
-    	//TODO
-		return 0;
+	public double precioImpuesto() {
+		double precio;
+    	if (this.getPotencia() < 8 ) {
+    		precio = 25.24;
+    	} else if (this.getPotencia() <= 11.99) {
+    		precio = 68.16;
+    	} else if (this.getPotencia() <= 15.99) {
+    		precio = 143.88;
+    	} else if (this.getPotencia() < 19.99) {
+    		precio = 179.22;
+    	} else {
+    		precio = 224.00;
+    	}
     	
+    	if (this.getComercial()) {
+    		precio = precio * 1.2;
+    	}
+    	
+    	return precio;
     }
 }

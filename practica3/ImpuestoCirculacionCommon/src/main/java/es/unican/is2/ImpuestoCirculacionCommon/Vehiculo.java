@@ -8,13 +8,18 @@ public abstract class Vehiculo implements Serializable{
   
     private String matricula;
 	private LocalDate fechaMatriculacion;	
+	
+	public Vehiculo(String mat, LocalDate fecha) {
+		this.matricula = mat;
+		this.fechaMatriculacion = fecha;
+	}
 
 	/**
      * Retorna el valor del impuesto de circulacion
      *  @return valor del impuesto circulacion
      */
-	public abstract double precioImpuesto (); 
-
+	public abstract double precioImpuesto ();
+		
 
 	/**
 	 * Retorna la matricula del vehiculo
