@@ -35,6 +35,9 @@ public class Furgoneta
 	@Override
 	public double precioImpuesto() {
 		double precio;
+		if (LocalDate.now().getYear() - this.getFechaMatriculacion().getYear() > 25) {
+			return 0;
+		}
     	if (this.getPotencia() < 8 ) {
     		precio = 25.24;
     	} else if (this.getPotencia() <= 11.99) {

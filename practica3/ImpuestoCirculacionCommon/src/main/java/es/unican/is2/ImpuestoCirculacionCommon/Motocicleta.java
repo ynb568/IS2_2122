@@ -23,6 +23,9 @@ public class Motocicleta extends Vehiculo
   
 	@Override
     public double precioImpuesto() {
+		if (LocalDate.now().getYear() - this.getFechaMatriculacion().getYear() > 25) {
+			return 0;
+		}
 		if (this.getCilindrada() <= 125) {
 			return 8.84;
 		} else if (this.getCilindrada() <= 250) {

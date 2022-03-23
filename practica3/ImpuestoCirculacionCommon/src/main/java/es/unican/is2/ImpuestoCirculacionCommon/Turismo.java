@@ -29,6 +29,9 @@ public class Turismo
      */
 	@Override
     public double precioImpuesto() {
+		if (LocalDate.now().getYear() - this.getFechaMatriculacion().getYear() > 25) {
+			return 0;
+		}
 		if (this.getPotencia() < 8) {
 			return 25.24;
 		} else if (this.getPotencia() <= 11.99) {
