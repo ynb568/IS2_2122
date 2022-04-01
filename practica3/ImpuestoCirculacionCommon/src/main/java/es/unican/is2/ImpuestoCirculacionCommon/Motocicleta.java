@@ -7,7 +7,7 @@ public class Motocicleta extends Vehiculo
 {
 	private int cilindrada;
 	
-	public Motocicleta(String string, LocalDate localDate, int i) {
+	public Motocicleta(String string, LocalDate localDate, int i) throws DatoInvalido {
     	super(string, localDate);
     	this.cilindrada = i;
     }
@@ -23,7 +23,7 @@ public class Motocicleta extends Vehiculo
   
 	@Override
     public double precioImpuesto() {
-		if (LocalDate.now().getYear() - this.getFechaMatriculacion().getYear() > 25) {
+		if (this.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || this.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25))) {
 			return 0;
 		}
 		if (this.getCilindrada() <= 125) {

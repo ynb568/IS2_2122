@@ -4,56 +4,60 @@ import java.io.Serializable;
 import java.time.LocalDate;
 @SuppressWarnings("serial")
 public class Furgoneta
-    extends Turismo implements Serializable
+extends Turismo implements Serializable
 {
-    
-    private double potencia;
-    private boolean comercial;
-    
-    public Furgoneta(String string, LocalDate localDate, int i) {
-    	super(string, localDate, i);
-    }
-    
-   /**
-    * Retorna el valor del atributo comercial
-    * @return true si la furgoneta es de uso comercial
-    *         false si no es de uso comercial
-    */
-    public boolean getComercial() {
-    	return comercial;
-    }
-    
-    /**
-	 * Retorna la potencia de la furgoneta
-	 * @return potencia en caballos fiscales
+
+	private boolean comercial;
+
+	public Furgoneta(String string, LocalDate localDate, double i, boolean comercial) throws DatoInvalido{
+		super(string, localDate, i);
+		this.comercial = comercial;
+	}
+
+	/**
+	 * Retorna el valor del atributo comercial
+	 * @return true si la furgoneta es de uso comercial
+	 *         false si no es de uso comercial
 	 */
-    public double getPotencia() {
-        return potencia;
-    }
-    
-  
+	public boolean getComercial() {
+		return comercial;
+	}
+
 	@Override
 	public double precioImpuesto() {
-		double precio;
-		if (LocalDate.now().getYear() - this.getFechaMatriculacion().getYear() > 25) {
+		if (this.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || this.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25))) {
 			return 0;
 		}
-    	if (this.getPotencia() < 8 ) {
-    		precio = 25.24;
-    	} else if (this.getPotencia() <= 11.99) {
-    		precio = 68.16;
-    	} else if (this.getPotencia() <= 15.99) {
-    		precio = 143.88;
-    	} else if (this.getPotencia() < 19.99) {
-    		precio = 179.22;
-    	} else {
-    		precio = 224.00;
-    	}
-    	
-    	if (this.getComercial()) {
-    		precio = precio * 1.2;
-    	}
-    	
-    	return precio;
-    }
+		if (this.getPotencia() < 8) {
+			if (this.getComercial()) {
+				return 25.24 - (25.24 * 0.2);
+			} else {
+				return 25.24;
+			}
+		} else if (this.getPotencia() <= 11.99) {
+			if (this.getComercial()) {
+				return 68.16 - (68.16 * 0.2);
+			} else {
+				return 68.16;
+			}
+		} else if (this.getPotencia() <= 15.99) {
+			if (this.getComercial()) {
+				return 143.88 - (143.88 * 0.2);
+			} else {
+				return 143.88;
+			}
+		} else if (this.getPotencia() <= 19.99) {
+			if (this.getComercial()) {
+				return 179.22 - (179.22 * 0.2);
+			} else {
+				return 179.22;
+			}
+		} else {
+			if (this.getComercial()) {
+				return 224 - (224 * 0.2);
+			} else {
+				return 224;
+			}
+		}
+	}
 }

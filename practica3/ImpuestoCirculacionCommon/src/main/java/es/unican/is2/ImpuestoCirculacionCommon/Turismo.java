@@ -9,7 +9,7 @@ public class Turismo
 
 	private double potencia;
 	
-	public Turismo(String string, LocalDate localDate, int i) {
+	public Turismo(String string, LocalDate localDate, double i) throws DatoInvalido {
     	super(string, localDate);
     	this.potencia = i;
     }
@@ -29,7 +29,7 @@ public class Turismo
      */
 	@Override
     public double precioImpuesto() {
-		if (LocalDate.now().getYear() - this.getFechaMatriculacion().getYear() > 25) {
+		if (this.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || this.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25))) {
 			return 0;
 		}
 		if (this.getPotencia() < 8) {
