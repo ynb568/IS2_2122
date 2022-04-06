@@ -48,8 +48,8 @@ private Furgoneta furgo;
 		furgo = new Furgoneta("1111-AAA", LocalDate.now(), 16, false);
 		assertTrue(furgo.precioImpuesto() == 179.22);
 		
-		furgo = new Furgoneta("1111-AAA", LocalDate.now().minusYears(24).minusMonths(11).minusDays(30), 18, false);
-		assertTrue(furgo.precioImpuesto() == 0);
+		furgo = new Furgoneta("1111-AAA", LocalDate.now().minusYears(25).plusDays(1), 18, false);
+		assertTrue(furgo.precioImpuesto() == 179.22);
 		
 		furgo = new Furgoneta("1111-AAA", LocalDate.now(), 19.99, false);
 		assertTrue(furgo.precioImpuesto() == 179.22);
@@ -62,26 +62,30 @@ private Furgoneta furgo;
 		
 		try {
 			furgo = new Furgoneta("1111-AAA", LocalDate.now(), -6, false);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 		
 		try {
 			furgo = new Furgoneta("1111-AAA", LocalDate.now(), -0.01, false);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 		
 		try {
 			furgo = new Furgoneta("1111-AAA", LocalDate.now().plusYears(3), 6, false);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 		
 		try {
 			furgo = new Furgoneta("1111-AAA", LocalDate.now().plusDays(1), 12, false);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 	}
 

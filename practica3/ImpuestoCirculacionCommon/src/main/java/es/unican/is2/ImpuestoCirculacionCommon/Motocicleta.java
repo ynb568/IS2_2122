@@ -10,6 +10,9 @@ public class Motocicleta extends Vehiculo
 	public Motocicleta(String string, LocalDate localDate, int i) throws DatoInvalido {
     	super(string, localDate);
     	this.cilindrada = i;
+    	if (this.cilindrada < 0) {throw new DatoInvalido();}
+    	if (localDate.isAfter(LocalDate.now())) {throw new DatoInvalido();}
+    	if (string == null) {throw new DatoInvalido();}
     }
 
     /**

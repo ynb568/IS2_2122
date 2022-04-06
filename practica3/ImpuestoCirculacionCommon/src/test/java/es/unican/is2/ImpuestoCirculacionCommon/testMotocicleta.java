@@ -48,8 +48,8 @@ public class testMotocicleta {
 		moto = new Motocicleta("1111-AAA", LocalDate.now(), 501);
 		assertTrue(moto.precioImpuesto() == 60.58);
 		
-		moto = new Motocicleta("1111-AAA", LocalDate.now().minusYears(24).minusMonths(11).minusDays(30), 750);
-		assertTrue(moto.precioImpuesto() == 0);
+		moto = new Motocicleta("1111-AAA", LocalDate.now().minusYears(25).plusDays(1), 750);
+		assertTrue(moto.precioImpuesto() == 60.58);
 		
 		moto = new Motocicleta("1111-AAA", LocalDate.now(), 1000);
 		assertTrue(moto.precioImpuesto() == 60.58);
@@ -62,26 +62,30 @@ public class testMotocicleta {
 		
 		try {
 			moto = new Motocicleta("1111-AAA", LocalDate.now(), -6);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 		
 		try {
 			moto = new Motocicleta("1111-AAA", LocalDate.now().plusYears(5), -1);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 		
 		try {
 			moto = new Motocicleta("1111-AAA", LocalDate.now().plusYears(3), 49);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 		
 		try {
 			moto = new Motocicleta("1111-AAA", LocalDate.now().plusDays(1), 150);
-		} catch (DatoInvalido e) {
 			fail();
+		} catch (DatoInvalido e) {
+			
 		}
 	}
 

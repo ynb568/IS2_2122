@@ -25,39 +25,29 @@ extends Turismo implements Serializable
 
 	@Override
 	public double precioImpuesto() {
+		double discount = 0.2;
+		double impuesto = 0;
 		if (this.getFechaMatriculacion().isBefore(LocalDate.now().minusYears(25)) || this.getFechaMatriculacion().isEqual(LocalDate.now().minusYears(25))) {
 			return 0;
 		}
 		if (this.getPotencia() < 8) {
-			if (this.getComercial()) {
-				return 25.24 - (25.24 * 0.2);
-			} else {
-				return 25.24;
-			}
-		} else if (this.getPotencia() <= 11.99) {
-			if (this.getComercial()) {
-				return 68.16 - (68.16 * 0.2);
-			} else {
-				return 68.16;
-			}
-		} else if (this.getPotencia() <= 15.99) {
-			if (this.getComercial()) {
-				return 143.88 - (143.88 * 0.2);
-			} else {
-				return 143.88;
-			}
-		} else if (this.getPotencia() <= 19.99) {
-			if (this.getComercial()) {
-				return 179.22 - (179.22 * 0.2);
-			} else {
-				return 179.22;
-			}
-		} else {
-			if (this.getComercial()) {
-				return 224 - (224 * 0.2);
-			} else {
-				return 224;
-			}
+			impuesto = 25.24;
 		}
+		else if (this.getPotencia() <= 11.99) {
+			impuesto = 68.16;
+		}
+		else if (this.getPotencia() <= 15.99) {
+			impuesto = 143.88;
+		}
+		else if (this.getPotencia() <= 19.99) {
+			impuesto = 179.22;;
+		}
+		else if (this.getPotencia() > 19.99){
+			impuesto = 224;
+		}
+		if (this.getComercial()) {
+			impuesto -= impuesto*discount;
+		}
+		return impuesto;
 	}
 }

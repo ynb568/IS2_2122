@@ -12,6 +12,9 @@ public class Turismo
 	public Turismo(String string, LocalDate localDate, double i) throws DatoInvalido {
     	super(string, localDate);
     	this.potencia = i;
+    	if (this.potencia < 0) {throw new DatoInvalido();}
+    	if (localDate.isAfter(LocalDate.now())) {throw new DatoInvalido();}
+    	if (string == null) {throw new DatoInvalido();}
     }
 	
 	/**
