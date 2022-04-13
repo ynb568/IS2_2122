@@ -27,8 +27,8 @@ public class Contribuyente implements Serializable {
      */
     public double totalAPagar() {
     	double total = 0;
-    	for (int i = 0; i < vehiculos.size(); i++) {
-    		total += vehiculos.get(i).precioImpuesto();
+    	for (int i = 0; i < vehiculos.size() - 1; i++) {
+    		total += this.getVehiculos().get(i).precioImpuesto();
     	}
     	return total;
     }
