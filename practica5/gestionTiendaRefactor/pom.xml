@@ -5,6 +5,10 @@
 	<groupId>es.unican.is2</groupId>
 	<artifactId>gestionTienda</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
+	<properties>
+		<maven.compiler.source>15</maven.compiler.source>
+		<maven.compiler.target>15</maven.compiler.target>
+	</properties>
 	<dependencies>
 		<dependency>
 			<groupId>fundamentos</groupId>
