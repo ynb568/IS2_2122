@@ -129,47 +129,16 @@ public class Tienda {
 			nombre = in.nextLine();
 			direccion = in.nextLine();
 			in.next();
-			Vendedor ven = null;
 			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) { 		// WMC + 1  CCog +2
-
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setT(totalVentas);
-				lista.add(ven);
-			}
+			String tipo1 = "Junior";
+			TipoVendedor tipo2 = TipoVendedor.SENIOR;
+			leeVendedorEnPlantilla(in, tipo1, tipo2);
 			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Pr�cticas")) { 		// WMC + 1 CCog +2
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setT(totalVentas);
-				lista.add(ven);
-			}
-			while (in.hasNext()) { 		// WMC + 1 CCog +2
-				in.next();
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setT(totalVentas);
-				lista.add(ven);
-			}
+			tipo1 = "Practicas";
+			tipo2 = TipoVendedor.JUNIOR;
+			leeVendedorEnPlantilla(in, tipo1, tipo2);
+			// lee los vendedores en practicas
+			leeVendedorEnPracticas(in);
 		} catch (FileNotFoundException e) { 		// WMC + 1 CCog +1
 		} finally {
 			if (in != null) { 		// WMC + 1 CCog +2
@@ -201,47 +170,16 @@ public class Tienda {
 			nombre = in.nextLine();
 			direccion = in.nextLine();
 			in.next();
-			Vendedor ven = null;
 			// lee los vendedores senior
-			while (in.hasNext() && !in.next().equals("Junior")) { 		// WMC + 1 CCog +2
-
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.SENIOR);
-				ven.setT(totalVentas);
-				lista.add(ven);
-			}
+			String tipo1 = "Junior";
+			TipoVendedor tipo2 = TipoVendedor.SENIOR;
+			leeVendedorEnPlantilla(in, tipo1, tipo2);
 			// lee los vendedores junior
-			while (in.hasNext() && !in.next().equals("Pr�cticas")) { 		// WMC + 1 CCog +2
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new VendedorEnPlantilla(nombre, idIn, dni, TipoVendedor.JUNIOR);
-				ven.setT(totalVentas);
-				lista.add(ven);
-			}
-			while (in.hasNext()) { 		// WMC + 1 CCog +2
-				in.next();
-				String nombre = in.next();
-				in.next();
-				String idIn = in.next();
-				in.next();
-				String dni= in.next();
-				in.next();
-				double totalVentas = in.nextDouble();
-				ven = new vendedorEnPracticas(nombre, idIn, dni);
-				ven.setT(totalVentas);
-				lista.add(ven);
-			}
+			tipo1 = "Practicas";
+			tipo2 = TipoVendedor.JUNIOR;
+			leeVendedorEnPlantilla(in, tipo1, tipo2);
+			// lee los vendedores en practicas
+			leeVendedorEnPracticas(in);
 		} catch (FileNotFoundException e) { 		// WMC + 1 CCog +1
 
 		} finally {
@@ -252,6 +190,40 @@ public class Tienda {
 
 		return lista;
 
+	}
+
+	private void leeVendedorEnPracticas(Scanner in) {
+		Vendedor ven;
+		while (in.hasNext()) { 		// WMC + 1 CCog +2
+			in.next();
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new vendedorEnPracticas(nombre, idIn, dni);
+			ven.setT(totalVentas);
+			lista.add(ven);
+		}
+	}
+
+	private void leeVendedorEnPlantilla(Scanner in, String tipo1, TipoVendedor tipo2) {
+		Vendedor ven;
+		while (in.hasNext() && !in.next().equals(tipo1)) { 		// WMC + 1 CCog +2
+
+			String nombre = in.next();
+			in.next();
+			String idIn = in.next();
+			in.next();
+			String dni= in.next();
+			in.next();
+			double totalVentas = in.nextDouble();
+			ven = new VendedorEnPlantilla(nombre, idIn, dni, tipo2);
+			ven.setT(totalVentas);
+			lista.add(ven);
+		}
 	}
 
 	/**
