@@ -194,7 +194,7 @@ public class Tienda {
 
 	private void leeVendedorEnPracticas(Scanner in) {
 		Vendedor ven;
-		while (in.hasNext()) { 		// WMC + 1 CCog +2
+		while (in.hasNext()) { 		// WMC + 1 CCog +1
 			in.next();
 			String nombre = in.next();
 			in.next();
@@ -211,7 +211,7 @@ public class Tienda {
 
 	private void leeVendedorEnPlantilla(Scanner in, String tipo1, TipoVendedor tipo2) {
 		Vendedor ven;
-		while (in.hasNext() && !in.next().equals(tipo1)) { 		// WMC + 1 CCog +2
+		while (in.hasNext() && !in.next().equals(tipo1)) { 		// WMC + 1 CCog +1
 
 			String nombre = in.next();
 			in.next();
@@ -271,7 +271,7 @@ public class Tienda {
 	}
 
 	private void printVendedor(PrintWriter out, List<Vendedor> lista) {
-		for (Vendedor v : lista) { 		// WMC + 1 CCog +2
+		for (Vendedor v : lista) { 		// WMC + 1 CCog +1
 			VendedorEnPlantilla v1 = (VendedorEnPlantilla) v;
 			out.println("  Nombre: " + v1.getNombre() + " Id: " + v1.getId() + " DNI: "+ v1.getDni()+" TotalVentasMes: "
 					+ v1.getTotalVentas());
